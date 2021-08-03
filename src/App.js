@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import Header from './components/Header'
-import Tasks from './components/Tasks'
+import { useState } from 'react';
+import Header from './components/Header';
+import Tasks from './components/Tasks';
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -21,18 +21,20 @@ function App() {
       text: 'Send Finished Crochet Sweater',
       day: 'August 6th at 11am',
       reminder: false,
-    }
-])
+    },
+  ]);
 
-//DELETE TASK
-const deleteTask = (id) => {
-  console.log('delete', id);
-}
+  //DELETE TASK
+  const deleteTask = id => {
+    //for each task you want to filter where the task id is not equal to the id
+    setTasks(tasks.filter(task => task.id !== id));
+  };
 
   return (
     <div className="container">
       <Header />
-      <Tasks tasks={tasks} onDelete={deleteTask} />
+      {/* IF THERE ARE TASKS, show Tasks, else show message */}
+      {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} /> : 'No Tasks To Show'}
     </div>
   );
 }
