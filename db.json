@@ -11,6 +11,12 @@
       "text": "Log Coding Hours",
       "day": "August 4th at 4pm",
       "reminder": true
+    },
+    {
+      "text": "I should be in the db.json now!!!",
+      "day": "Jan 1st and 1pm",
+      "reminder": true,
+      "id": 3
     }
   ]
 }
