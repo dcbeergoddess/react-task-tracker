@@ -50,7 +50,10 @@ function App() {
 
   return (
     <div className="container">
-      <Header onAdd={() => setShowAddTask(!showAddTask)} />
+      <Header 
+        onAdd={() => setShowAddTask(!showAddTask)}
+        showAdd={showAddTask} 
+      />
       {/* If showAddTask is true we show AddTask else we do nothing */}
       {showAddTask && <AddTask onAdd={addTask} />}
       {/* IF THERE ARE TASKS, show Tasks, else show message */}
