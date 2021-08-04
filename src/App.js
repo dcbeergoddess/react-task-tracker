@@ -34,8 +34,8 @@ function App() {
   const toggleReminder = (id) => {
     //use map to toggle --> map through `tasks` in our state and for each `task` 
     //where `task.id` in current iteration is equal to the id that's passed in 
-    //then we have specific object (else the task) 
-    //we want to copy && spread across all the task properties and values (of the task that matches) but want to change the reminder so the reminder i'm going to set is opposite of whatever that specific task reminder is
+    //then we have specific object : (else the task) 
+    //we want to copy && spread across all the task properties and values in object (of the task that matches) but want to change the reminder so the reminder i'm going to set is opposite of whatever that specific task reminder is
     setTasks(tasks.map((task) => task.id === id ? {...task, reminder: !task.reminder } : task))
   }
 
