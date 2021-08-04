@@ -25,13 +25,20 @@ function App() {
     },
   ]);
 
+  //ADD TASK
+  const addTask = (task) => {
+    const id = Math.floor(Math.random() * 10000) + 1
+    const newTask = {id, ...task}
+    setTasks([...tasks, newTask])
+  }
+
   //DELETE TASK
-  const deleteTask = id => {
+  const deleteTask = (id) => {
     //for each task you want to filter where the task id is not equal to the id
     setTasks(tasks.filter(task => task.id !== id));
   };
 
-  //Toggle Reminder
+  //TOGGLE REMINDER
   const toggleReminder = (id) => {
     //use map to toggle --> map through `tasks` in our state and for each `task` 
     //where `task.id` in current iteration is equal to the id that's passed in 
@@ -43,7 +50,7 @@ function App() {
   return (
     <div className="container">
       <Header />
-      <AddTask />
+      <AddTask onAdd={addTask} />
       {/* IF THERE ARE TASKS, show Tasks, else show message */}
       {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} /> : 'No Tasks To Show'}
     </div>
