@@ -11,12 +11,6 @@
       "text": "Log Coding Hours",
       "day": "August 4th at 4pm",
       "reminder": true
-    },
-    {
-      "id": 3,
-      "text": "Send Finished Crochet Sweater",
-      "day": "August 6th at 11am",
-      "reminder": false
     }
   ]
 }

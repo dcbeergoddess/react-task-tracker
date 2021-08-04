@@ -32,7 +32,10 @@ function App() {
   }
 
   //DELETE TASK
-  const deleteTask = (id) => {
+  const deleteTask = async (id) => {
+    await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: 'DELETE'
+    })
     //for each task you want to filter where the task id is not equal to the id
     setTasks(tasks.filter(task => task.id !== id));
   };
