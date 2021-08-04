@@ -16,9 +16,17 @@ function App() {
     getTasks()
   }, []) //DEPENDENCY ARRAY
 
-  //FETCH TASK
+  //FETCH TASKS
   const fetchTasks = async () => {
     const res = await fetch('http://localhost:5000/tasks')
+    const data = await res.json()
+
+    return data
+  }
+
+  //FETCH TASK
+  const fetchTask = async (id) => {
+    const res = await fetch(`http://localhost:5000/tasks/${id}`)
     const data = await res.json()
 
     return data
@@ -54,12 +62,25 @@ function App() {
   };
 
   //TOGGLE REMINDER
-  const toggleReminder = (id) => {
+  const toggleReminder = async (id) => {
+    const taskToToggle = await fetchTask(id)
+    const updTask = {...taskToToggle, reminder: !taskToToggle.reminder}
+
+    const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(updTask)
+    })
+
+    const data = await res.json()
+
     //use map to toggle --> map through `tasks` in our state and for each `task` 
     //where `task.id` in current iteration is equal to the id that's passed in 
     //then we have specific object : (else the task) 
     //we want to copy && spread across all the task properties and values in object (of the task that matches) but want to change the reminder so the reminder i'm going to set is opposite of whatever that specific task reminder is
-    setTasks(tasks.map((task) => task.id === id ? {...task, reminder: !task.reminder } : task))
+    setTasks(tasks.map((task) => task.id === id ? {...task, reminder: data.reminder } : task))
   }
 
   return (
